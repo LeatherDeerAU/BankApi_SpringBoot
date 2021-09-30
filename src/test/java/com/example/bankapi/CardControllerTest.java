@@ -44,7 +44,7 @@ public class CardControllerTest {
 
 
     @Test
-    void addCard_OK() throws Exception {
+    void addCardOK() throws Exception {
         long userId = userService.save(new UserDTO("firName", "lasName", "0001"));
         long bankId = bankAccountService.save(new BankAccountDTO(0, userId));
 
@@ -60,7 +60,7 @@ public class CardControllerTest {
     }
 
     @Test
-    void addCardWithNoExistsFK_4xx() throws Exception {
+    void addCardWithNoExistsFK4xx() throws Exception {
         mockMvc.perform(post("/api/card/new")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(om.writeValueAsString(new CardDTO("3000 0000 0000 0000", -1L))))

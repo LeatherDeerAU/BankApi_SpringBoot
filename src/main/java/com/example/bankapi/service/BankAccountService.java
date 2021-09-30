@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public class BankAccountService {
-    final BankAccountRepository bankAccountRepository;
+    private final BankAccountRepository bankAccountRepository;
 
 
     public BankAccountService(BankAccountRepository bankAccountRepository) {

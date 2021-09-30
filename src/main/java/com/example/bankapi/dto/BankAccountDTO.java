@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 public class BankAccountDTO {
-    long balance;
+    private long balance;
 
     @JsonProperty("user_id")
-    long userId;
+    private long userId;
 
     public BankAccountDTO(long balance, long userId) {
         this.balance = balance;

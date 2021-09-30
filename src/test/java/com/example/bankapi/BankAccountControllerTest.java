@@ -43,7 +43,7 @@ public class BankAccountControllerTest {
     }
 
     @Test
-    void saveBankAccount_OK() throws Exception {
+    void saveBankAccountOK() throws Exception {
         userService.save(new UserDTO("firName", "lasName", "0001"));
         String contentAsString = mockMvc.perform(post("/api/bank_account/new")
                         .content(om.writeValueAsString(new BankAccountDTO(10L, 1L)))
@@ -59,17 +59,17 @@ public class BankAccountControllerTest {
     }
 
     @Test
-    void incrBalanceTest_OK() throws Exception {
-        long user_id = userService.save(new UserDTO("firName", "lasName", "0002"));
-        long id = bankAccountService.save(new BankAccountDTO(0, user_id));
-        long old = bankAccountService.get(id).getBalance();
+    void incrBalanceTestOK() throws Exception {
+        long userId = userService.save(new UserDTO("firName", "lasName", "0002"));
+        long bankId = bankAccountService.save(new BankAccountDTO(0, userId));
+        long old = bankAccountService.get(bankId).getBalance();
         long inc = 100;
 
-        mockMvc.perform(patch("/api/bank_account/update/" + id)
+        mockMvc.perform(patch("/api/bank_account/update/" + bankId)
                         .content(om.writeValueAsString(new UpdateBalanceDTO(inc)))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        assert (old + inc == bankAccountService.get(id).getBalance());
+        assert (old + inc == bankAccountService.get(bankId).getBalance());
     }
 }

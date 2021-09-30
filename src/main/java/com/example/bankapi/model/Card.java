@@ -11,13 +11,13 @@ import javax.persistence.*;
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(unique = true)
-    String number;
+    private String number;
 
     @ManyToOne
-    BankAccount bank_account;
+    private BankAccount bank_account;
 
     public Card(String number, BankAccount bank_account) {
         this.number = number;

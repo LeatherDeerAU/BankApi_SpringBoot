@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class TransferDTO {
     @JsonProperty("id_from")
-    long idFrom;
+    private long idFrom;
 
     @JsonProperty("id_to")
-    long idTo;
-    long amount;
+    private long idTo;
+    private long amount;
 
     public TransferDTO(long idFrom, long idTo, long amount) {
         this.idFrom = idFrom;

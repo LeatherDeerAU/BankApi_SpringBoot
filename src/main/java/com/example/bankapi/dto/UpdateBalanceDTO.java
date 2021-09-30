@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class UpdateBalanceDTO {
-    long inc;
+    private long inc;
 
     public UpdateBalanceDTO(long inc) {
         this.inc = inc;

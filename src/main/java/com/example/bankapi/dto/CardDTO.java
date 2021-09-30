@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 public class CardDTO {
-    String number;
+    private String number;
     @JsonProperty("bank_account_id")
-    long bankAccountId;
+    private long bankAccountId;
 
     public CardDTO(String number, long bankAccountId) {
         this.number = number;

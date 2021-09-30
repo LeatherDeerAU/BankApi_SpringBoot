@@ -34,20 +34,20 @@ public class UserControllerTest {
     UserService userService;
 
     @Test
-    void findNoExistUser_4xx() throws Exception {
+    void findNoExistUser4xx() throws Exception {
         mockMvc.perform(get("/api/user/0"))
                 .andExpect(status().is4xxClientError());
     }
 
     @Test
-    void findUser_OK() throws Exception {
+    void findUserOK() throws Exception {
         userService.save(new UserDTO("firName", "lasName", "0002"));
         mockMvc.perform(get("/api/user/0002"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    void saveUser_ok() throws Exception {
+    void saveUserOK() throws Exception {
 
         mockMvc.perform(post("/api/user/new")
                         .contentType(MediaType.APPLICATION_JSON)

@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class UserDTO {
     @JsonProperty("first_name")
-    String firstName;
+    private String firstName;
 
     @JsonProperty("last_name")
-    String lastName;
-    String number;
+    private String lastName;
+    private String number;
 
     public UserDTO(String firstName, String lastName, String number) {
         this.firstName = firstName;
