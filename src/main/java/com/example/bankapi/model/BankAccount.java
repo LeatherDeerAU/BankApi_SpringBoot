@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class BankAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    long balance;
+    Long id;
+    Long balance;
 
     @ManyToOne
     User user;

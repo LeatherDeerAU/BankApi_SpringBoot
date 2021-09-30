@@ -1,6 +1,6 @@
 package com.example.bankapi.service;
 
-import com.example.bankapi.DTO.UserDTO;
+import com.example.bankapi.dto.UserDTO;
 import com.example.bankapi.model.User;
 import com.example.bankapi.repository.UserRepository;
 import org.springframework.http.HttpStatus;

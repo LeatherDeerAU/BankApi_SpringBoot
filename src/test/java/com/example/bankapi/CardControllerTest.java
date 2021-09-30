@@ -1,9 +1,9 @@
 package com.example.bankapi;
 
 
-import com.example.bankapi.DTO.BankAccount_DTO;
-import com.example.bankapi.DTO.CardDTO;
-import com.example.bankapi.DTO.UserDTO;
+import com.example.bankapi.dto.BankAccountDTO;
+import com.example.bankapi.dto.CardDTO;
+import com.example.bankapi.dto.UserDTO;
 import com.example.bankapi.service.BankAccountService;
 import com.example.bankapi.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,17 +45,17 @@ public class CardControllerTest {
 
     @Test
     void addCard_OK() throws Exception {
-        long user_id = userService.save(new UserDTO("firName", "lasName", "0001"));
-        long bank_id = bankAccountService.save(new BankAccount_DTO(0, user_id));
+        long userId = userService.save(new UserDTO("firName", "lasName", "0001"));
+        long bankId = bankAccountService.save(new BankAccountDTO(0, userId));
 
         mockMvc.perform(post("/api/card/new")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(om.writeValueAsString(new CardDTO("3001 0000 0000 0000", bank_id))))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(new CardDTO("3001 0000 0000 0000", bankId))))
                 .andExpect(status().isOk());
 
         mockMvc.perform(post("/api/card/new")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(om.writeValueAsString(new CardDTO("3001 0000 0000 0000", bank_id   ))))
+                        .content(om.writeValueAsString(new CardDTO("3001 0000 0000 0000", bankId))))
                 .andExpect(status().is4xxClientError());
     }
 

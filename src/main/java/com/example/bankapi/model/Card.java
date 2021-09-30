@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    Long id;
 
     @Column(unique = true)
     String number;

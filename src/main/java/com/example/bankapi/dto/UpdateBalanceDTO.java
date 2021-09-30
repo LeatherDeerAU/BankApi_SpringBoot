@@ -1,4 +1,4 @@
-package com.example.bankapi.DTO;
+package com.example.bankapi.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

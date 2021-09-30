@@ -1,8 +1,8 @@
 package com.example.bankapi.controller;
 
-import com.example.bankapi.DTO.BankAccount_DTO;
-import com.example.bankapi.DTO.TransferDTO;
-import com.example.bankapi.DTO.UpdateBalanceDTO;
+import com.example.bankapi.dto.BankAccountDTO;
+import com.example.bankapi.dto.TransferDTO;
+import com.example.bankapi.dto.UpdateBalanceDTO;
 import com.example.bankapi.model.BankAccount;
 import com.example.bankapi.service.BankAccountService;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class BankAccountController {
     }
 
     @PostMapping("/new")
-    public Map save(@RequestBody BankAccount_DTO bankAccount_dto) {
+    public Map save(@RequestBody BankAccountDTO bankAccount_dto) {
         return Collections.singletonMap("id", bankAccountService.save(bankAccount_dto));
     }
 
@@ -37,6 +37,6 @@ public class BankAccountController {
 
     @PostMapping("/transfer")
     public void transfer(@RequestBody TransferDTO req) {
-        bankAccountService.transfer(req.getId_from(), req.getId_to(), req.getAmount());
+        bankAccountService.transfer(req.getIdFrom(), req.getIdTo(), req.getAmount());
     }
 }

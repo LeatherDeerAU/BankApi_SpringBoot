@@ -1,6 +1,6 @@
 package com.example.bankapi.repository;
 
-import com.example.bankapi.DTO.BankAccount_DTO;
+import com.example.bankapi.dto.BankAccountDTO;
 import com.example.bankapi.model.BankAccount;
 import com.example.bankapi.model.User;
 import org.hibernate.Session;
@@ -20,11 +20,11 @@ public class BankAccountRepository {
         return cur;
     }
 
-    public long save(BankAccount_DTO bankAccount_dto) {
+    public long save(BankAccountDTO bankAccount_dto) {
         Session session = SessionFactoryHelper.getSessionFactory().openSession();
         session.beginTransaction();
 
-        User user = session.load(User.class, bankAccount_dto.getUser_id());
+        User user = session.load(User.class, bankAccount_dto.getUserId());
         BankAccount bankAccount = new BankAccount(bankAccount_dto.getBalance(), user);
 
         session.persist(bankAccount);

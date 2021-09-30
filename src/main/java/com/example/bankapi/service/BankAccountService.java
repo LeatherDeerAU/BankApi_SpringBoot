@@ -1,7 +1,6 @@
 package com.example.bankapi.service;
 
-import com.example.bankapi.DTO.BankAccount_DTO;
-import com.example.bankapi.DTO.UpdateBalanceDTO;
+import com.example.bankapi.dto.BankAccountDTO;
 import com.example.bankapi.model.BankAccount;
 import com.example.bankapi.repository.BankAccountRepository;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,7 @@ public class BankAccountService {
         this.bankAccountRepository = bankAccountRepository;
     }
 
-    public long save(BankAccount_DTO bankAccount_dto) {
+    public long save(BankAccountDTO bankAccount_dto) {
         try {
             return bankAccountRepository.save(bankAccount_dto);
         } catch (Exception e) {

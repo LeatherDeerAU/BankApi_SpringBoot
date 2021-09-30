@@ -1,6 +1,6 @@
 package com.example.bankapi.controller;
 
-import com.example.bankapi.DTO.UserDTO;
+import com.example.bankapi.dto.UserDTO;
 import com.example.bankapi.model.User;
 import com.example.bankapi.service.UserService;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.example.bankapi;
 
 
-import com.example.bankapi.DTO.UserDTO;
+import com.example.bankapi.dto.UserDTO;
 import com.example.bankapi.service.BankAccountService;
 import com.example.bankapi.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,8 +41,8 @@ public class UserControllerTest {
 
     @Test
     void findUser_OK() throws Exception {
-        userService.save(new UserDTO("firName", "lasName", "0001"));
-        mockMvc.perform(get("/api/user/0001"))
+        userService.save(new UserDTO("firName", "lasName", "0002"));
+        mockMvc.perform(get("/api/user/0002"))
                 .andExpect(status().isOk());
     }
 
@@ -50,8 +50,8 @@ public class UserControllerTest {
     void saveUser_ok() throws Exception {
 
         mockMvc.perform(post("/api/user/new")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(om.writeValueAsString(new UserDTO("firName", "lasName", "0001"))))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(om.writeValueAsString(new UserDTO("firName", "lasName", "0001"))))
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/api/user/0001"))

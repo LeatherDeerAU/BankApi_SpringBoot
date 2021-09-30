@@ -1,6 +1,6 @@
 package com.example.bankapi.repository;
 
-import com.example.bankapi.DTO.UserDTO;
+import com.example.bankapi.dto.UserDTO;
 import com.example.bankapi.model.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -28,8 +28,8 @@ public class UserRepository {
         Session session = SessionFactoryHelper.getSessionFactory().openSession();
         session.beginTransaction();
 
-        User user = new User(userDTO.getFirst_name(),
-                userDTO.getLast_name(), userDTO.getNumber());
+        User user = new User(userDTO.getFirstName(),
+                userDTO.getLastName(), userDTO.getNumber());
 
         session.persist(user);
         session.getTransaction().commit();

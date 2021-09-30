@@ -1,9 +1,9 @@
 package com.example.bankapi;
 
 
-import com.example.bankapi.DTO.BankAccount_DTO;
-import com.example.bankapi.DTO.UpdateBalanceDTO;
-import com.example.bankapi.DTO.UserDTO;
+import com.example.bankapi.dto.BankAccountDTO;
+import com.example.bankapi.dto.UpdateBalanceDTO;
+import com.example.bankapi.dto.UserDTO;
 import com.example.bankapi.model.BankAccount;
 import com.example.bankapi.service.BankAccountService;
 import com.example.bankapi.service.UserService;
@@ -46,8 +46,8 @@ public class BankAccountControllerTest {
     void saveBankAccount_OK() throws Exception {
         userService.save(new UserDTO("firName", "lasName", "0001"));
         String contentAsString = mockMvc.perform(post("/api/bank_account/new")
-                .content(om.writeValueAsString(new BankAccount_DTO(10L, 1L)))
-                .contentType(MediaType.APPLICATION_JSON))
+                        .content(om.writeValueAsString(new BankAccountDTO(10L, 1L)))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
 
@@ -57,16 +57,17 @@ public class BankAccountControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.balance").value(10));
     }
+
     @Test
     void incrBalanceTest_OK() throws Exception {
-        long user_id = userService.save(new UserDTO("firName", "lasName", "0001"));
-        long id = bankAccountService.save(new BankAccount_DTO(0, user_id));
+        long user_id = userService.save(new UserDTO("firName", "lasName", "0002"));
+        long id = bankAccountService.save(new BankAccountDTO(0, user_id));
         long old = bankAccountService.get(id).getBalance();
         long inc = 100;
 
-        mockMvc.perform(patch("/api/bank_account/update/1")
-                .content(om.writeValueAsString(new UpdateBalanceDTO(inc)))
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(patch("/api/bank_account/update/" + id)
+                        .content(om.writeValueAsString(new UpdateBalanceDTO(inc)))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         assert (old + inc == bankAccountService.get(id).getBalance());
